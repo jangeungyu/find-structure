@@ -1,18 +1,13 @@
-
-# coding: utf-8
-
-# In[64]:
-
-
-# used genetic algorithm
-
 # packages and modules
 
 import numpy as np
 import copy
 
 
-# In[65]:
+
+
+
+
 
 
 #class and functions
@@ -242,7 +237,10 @@ def softmax(a):
     return c
 
 
-# In[71]:
+
+
+
+
 
 
 # setting
@@ -251,7 +249,7 @@ def softmax(a):
 cardinality = [2, 3]
 
 # Keys are morphemes, and values are sorts.
-language = {'a':(1,), 'b':(1,), 'c':(1,), '0':(1,), '-':(1,1), '+':(1,1,1), '=':(1,1,0), 'and':(0,0,0), 'imply':(0,0,0)}
+language = {'a':(1,), 'b':(1,), 'c':(1,), '0':(1,), '-':(1,1), '+':(1,1,1), '=':(1,1,0), 'and':(0,0,0)}
 
 fixed_morphemes = {'a':np.array([[1,0,0]], dtype='bool'),
                   'b':np.array([[1,0,0]], dtype='bool'),
@@ -268,11 +266,7 @@ fixed_morphemes = {'a':np.array([[1,0,0]], dtype='bool'),
                   'and':np.array([[1,0],
                                  [0,1],
                                  [0,1],
-                                 [0,1]], dtype='bool'),
-                  'imply':np.array([[1,0],
-                                   [0,1],
-                                   [1,0],
-                                   [1,0]], dtype='bool')}
+                                 [0,1]], dtype='bool')}
 trainables = [morpheme for morpheme in language if not morpheme in fixed_morphemes]
 
 # group theory
@@ -292,8 +286,13 @@ chromosome.cardinality = cardinality
 rectified_axioms = [quantifier_process(axioms[m], chromosome.language) for m in range(len(axioms))]
 
 
-# In[76]:
 
+
+
+
+
+
+# train
 
 population = 4 # population should be at least 4.
 
@@ -318,7 +317,10 @@ for epoch in range(1000):
 max_index = np.argmax(fitnesses)
 
 
-# In[85]:
+
+
+
+
 
 
 # verify
@@ -342,10 +344,3 @@ visualize_minus = np.array(visualize_minus)
 print('0:\n{}\n'.format(visualize_0))
 print('+:\n{}\n'.format(visualize_plus))
 print('-:\n{}'.format(visualize_minus))
-
-
-# In[87]:
-
-
-chromos[max_index].predict(rectified_axioms)
-
